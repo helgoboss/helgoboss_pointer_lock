@@ -10,9 +10,9 @@
 
 #define HELGOBOSS_POINTER_LOCK_PLUGIN(obj) \
   (G_TYPE_CHECK_INSTANCE_CAST((obj), helgoboss_pointer_lock_plugin_get_type(), \
-                              PointerLockPlugin))
+                              HelgobossPointerLockPlugin))
 
-struct _PointerLockPlugin
+struct _HelgobossPointerLockPlugin
 {
     GObject parent_instance;
     FlPluginRegistrar* registrar;
@@ -80,11 +80,11 @@ GdkPoint get_pointer_position_on_screen(GdkDisplay* gdk_display)
 
 // End reusable functions
 
-G_DEFINE_TYPE(PointerLockPlugin, helgoboss_pointer_lock_plugin, g_object_get_type())
+G_DEFINE_TYPE(HelgobossPointerLockPlugin, helgoboss_pointer_lock_plugin, g_object_get_type())
 
 // Called when a method call is received from Flutter.
 static void helgoboss_pointer_lock_plugin_handle_method_call(
-    PointerLockPlugin* self, FlMethodCall* method_call)
+    HelgobossPointerLockPlugin* self, FlMethodCall* method_call)
 {
     g_autoptr(FlMethodResponse) response = nullptr;
 
@@ -128,7 +128,7 @@ static void helgoboss_pointer_lock_plugin_handle_method_call(
     fl_method_call_respond(method_call, response, nullptr);
 }
 
-FlMethodResponse* pointer_position_on_screen(const PointerLockPlugin* plugin)
+FlMethodResponse* pointer_position_on_screen(const HelgobossPointerLockPlugin* plugin)
 {
     GdkWindow* gdk_window = get_gdk_window(plugin->registrar);
     if (!gdk_window)
@@ -140,7 +140,7 @@ FlMethodResponse* pointer_position_on_screen(const PointerLockPlugin* plugin)
     return point_response(pos.x, pos.y);
 }
 
-FlMethodResponse* last_pointer_delta(const PointerLockPlugin* plugin)
+FlMethodResponse* last_pointer_delta(const HelgobossPointerLockPlugin* plugin)
 {
     GdkWindow* gdk_window = get_gdk_window(plugin->registrar);
     if (!gdk_window)
@@ -159,7 +159,7 @@ FlMethodResponse* last_pointer_delta(const PointerLockPlugin* plugin)
                           new_pointer_pos.y - initial_y);
 }
 
-FlMethodResponse* set_pointer_visible(PointerLockPlugin* plugin, bool visible)
+FlMethodResponse* set_pointer_visible(HelgobossPointerLockPlugin* plugin, bool visible)
 {
     GdkWindow* gdk_window = get_gdk_window(plugin->registrar);
     if (!gdk_window)
@@ -181,7 +181,7 @@ FlMethodResponse* set_pointer_visible(PointerLockPlugin* plugin, bool visible)
     return success_response();
 }
 
-FlMethodResponse* set_helgoboss_pointer_locked(PointerLockPlugin* plugin, bool locked)
+FlMethodResponse* set_helgoboss_pointer_locked(HelgobossPointerLockPlugin* plugin, bool locked)
 {
     GdkWindow* gdk_window = get_gdk_window(plugin->registrar);
     if (!gdk_window)
@@ -232,12 +232,12 @@ static void helgoboss_pointer_lock_plugin_dispose(GObject* object)
     G_OBJECT_CLASS(helgoboss_pointer_lock_plugin_parent_class)->dispose(object);
 }
 
-static void helgoboss_pointer_lock_plugin_class_init(PointerLockPluginClass* klass)
+static void helgoboss_pointer_lock_plugin_class_init(HelgobossPointerLockPluginClass* klass)
 {
     G_OBJECT_CLASS(klass)->dispose = helgoboss_pointer_lock_plugin_dispose;
 }
 
-static void helgoboss_pointer_lock_plugin_init(PointerLockPlugin* self)
+static void helgoboss_pointer_lock_plugin_init(HelgobossPointerLockPlugin* self)
 {
     self->cursor_visible = true;
     self->initial_pointer_pos.x = 0;
@@ -247,14 +247,14 @@ static void helgoboss_pointer_lock_plugin_init(PointerLockPlugin* self)
 static void method_call_cb(FlMethodChannel* channel, FlMethodCall* method_call,
                            gpointer user_data)
 {
-    PointerLockPlugin* plugin = HELGOBOSS_POINTER_LOCK_PLUGIN(user_data);
+    HelgobossPointerLockPlugin* plugin = HELGOBOSS_POINTER_LOCK_PLUGIN(user_data);
     helgoboss_pointer_lock_plugin_handle_method_call(plugin, method_call);
 }
 
 void helgoboss_pointer_lock_plugin_register_with_registrar(FlPluginRegistrar* registrar)
 {
     // Initialize plugin
-    PointerLockPlugin* plugin = HELGOBOSS_POINTER_LOCK_PLUGIN(
+    HelgobossPointerLockPlugin* plugin = HELGOBOSS_POINTER_LOCK_PLUGIN(
         g_object_new(helgoboss_pointer_lock_plugin_get_type(), nullptr));
     plugin->registrar = FL_PLUGIN_REGISTRAR(g_object_ref(registrar));
     // Set up channels

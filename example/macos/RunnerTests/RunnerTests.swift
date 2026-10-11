@@ -11,7 +11,7 @@ import XCTest
 class RunnerTests: XCTestCase {
 
   func testPointerPositionOnScreen() {
-    let plugin = PointerLockPlugin()
+    let plugin = HelgobossPointerLockPlugin()
 
     let call = FlutterMethodCall(methodName: "pointerPositionOnScreen", arguments: nil)
 

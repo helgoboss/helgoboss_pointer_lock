@@ -9,6 +9,6 @@
 #include <helgoboss_pointer_lock/pointer_lock_plugin_c_api.h>
 
 void RegisterPlugins(flutter::PluginRegistry* registry) {
-  PointerLockPluginCApiRegisterWithRegistrar(
-      registry->GetRegistrarForPlugin("PointerLockPluginCApi"));
+  HelgobossPointerLockPluginCApiRegisterWithRegistrar(
+      registry->GetRegistrarForPlugin("HelgobossPointerLockPluginCApi"));
 }

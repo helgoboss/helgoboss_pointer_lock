@@ -1,15 +1,15 @@
 import Cocoa
 import FlutterMacOS
 
-public class PointerLockPlugin: NSObject, FlutterPlugin {
+public class HelgobossPointerLockPlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
     // Method channel
     let channel = FlutterMethodChannel(name: "helgoboss_pointer_lock", binaryMessenger: registrar.messenger)
-    let instance = PointerLockPlugin()
+    let instance = HelgobossPointerLockPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
     // Event channel
     let eventChannel = FlutterEventChannel(name: "helgoboss_pointer_lock_session", binaryMessenger: registrar.messenger)
-    eventChannel.setStreamHandler(PointerLockSessionStreamHandler())
+    eventChannel.setStreamHandler(HelgobossPointerLockSessionStreamHandler())
   }
   
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
@@ -44,7 +44,7 @@ public class PointerLockPlugin: NSObject, FlutterPlugin {
   }
 }
 
-class PointerLockSessionStreamHandler: NSObject, FlutterStreamHandler {
+class HelgobossPointerLockSessionStreamHandler: NSObject, FlutterStreamHandler {
   private var monitor: Any?
   
   public func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {

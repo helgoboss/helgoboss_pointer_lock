@@ -4,9 +4,9 @@
 
 #include "helgoboss_pointer_lock_plugin.h"
 
-void PointerLockPluginCApiRegisterWithRegistrar(
+void HelgobossPointerLockPluginCApiRegisterWithRegistrar(
     FlutterDesktopPluginRegistrarRef registrar) {
-  helgoboss_pointer_lock::PointerLockPlugin::RegisterWithRegistrar(
+  helgoboss_pointer_lock::HelgobossPointerLockPlugin::RegisterWithRegistrar(
       flutter::PluginRegistrarManager::GetInstance()
           ->GetRegistrar<flutter::PluginRegistrarWindows>(registrar));
 }

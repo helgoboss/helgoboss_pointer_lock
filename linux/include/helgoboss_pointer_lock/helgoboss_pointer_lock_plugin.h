@@ -11,10 +11,10 @@ G_BEGIN_DECLS
 #define FLUTTER_PLUGIN_EXPORT
 #endif
 
-typedef struct _PointerLockPlugin PointerLockPlugin;
+typedef struct _HelgobossPointerLockPlugin HelgobossPointerLockPlugin;
 typedef struct {
   GObjectClass parent_class;
-} PointerLockPluginClass;
+} HelgobossPointerLockPluginClass;
 
 FLUTTER_PLUGIN_EXPORT GType helgoboss_pointer_lock_plugin_get_type();
 

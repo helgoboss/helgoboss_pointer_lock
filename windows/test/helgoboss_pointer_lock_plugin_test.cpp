@@ -22,8 +22,8 @@ using flutter::MethodResultFunctions;
 
 }  // namespace
 
-TEST(PointerLockPlugin, GetPlatformVersion) {
-  PointerLockPlugin plugin(nullptr);
+TEST(HelgobossPointerLockPlugin, GetPlatformVersion) {
+  HelgobossPointerLockPlugin plugin(nullptr);
   // Save the reply value from the success callback.
   std::string result_string;
   plugin.HandleMethodCall(

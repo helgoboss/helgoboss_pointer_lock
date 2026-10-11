@@ -31,7 +31,7 @@ namespace helgoboss_pointer_lock {
 	}
 
 	// static
-	void PointerLockPlugin::RegisterWithRegistrar(
+	void HelgobossPointerLockPlugin::RegisterWithRegistrar(
 		flutter::PluginRegistrarWindows* registrar) {
 		auto method_channel = std::make_unique<flutter::MethodChannel<flutter::EncodableValue>>(
 			registrar->messenger(),
@@ -44,27 +44,27 @@ namespace helgoboss_pointer_lock {
 			&flutter::StandardMethodCodec::GetInstance()
 		);
 
-		auto plugin = std::make_unique<PointerLockPlugin>(registrar);
+		auto plugin = std::make_unique<HelgobossPointerLockPlugin>(registrar);
 
 		method_channel->SetMethodCallHandler(
 			[plugin_pointer = plugin.get()](const auto& call, auto result) {
 				plugin_pointer->HandleMethodCall(call, std::move(result));
 			}
 		);
-		event_channel->SetStreamHandler(std::make_unique<PointerLockSessionStreamHandler>(registrar));
+		event_channel->SetStreamHandler(std::make_unique<HelgobossPointerLockSessionStreamHandler>(registrar));
 
 		registrar->AddPlugin(std::move(plugin));
 	}
 
-	PointerLockPlugin::PointerLockPlugin(flutter::PluginRegistrarWindows* registrar) {
+	HelgobossPointerLockPlugin::HelgobossPointerLockPlugin(flutter::PluginRegistrarWindows* registrar) {
 		registrar_ = registrar;
 	}
 
-	PointerLockPlugin::~PointerLockPlugin() {
+	HelgobossPointerLockPlugin::~HelgobossPointerLockPlugin() {
 		UnsubscribeFromRawInputData();
 	}
 
-	void PointerLockPlugin::HandleMethodCall(
+	void HelgobossPointerLockPlugin::HandleMethodCall(
 		const flutter::MethodCall<flutter::EncodableValue>& method_call,
 		std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result) {
 		if (method_call.method_name().compare("flutterRestart") == 0) {
@@ -134,7 +134,7 @@ namespace helgoboss_pointer_lock {
 		}
 	}
 
-	void PointerLockPlugin::SetPointerVisible(bool visible) {
+	void HelgobossPointerLockPlugin::SetPointerVisible(bool visible) {
 		if (visible == pointer_visible_) {
 			return;
 		}
@@ -143,7 +143,7 @@ namespace helgoboss_pointer_lock {
 	}
 
 
-	bool PointerLockPlugin::SubscribeToRawInputData() {
+	bool HelgobossPointerLockPlugin::SubscribeToRawInputData() {
 		if (SubscribedToRawInputData()) {
 			return true;
 		}
@@ -177,7 +177,7 @@ namespace helgoboss_pointer_lock {
 		return true;
 	}
 
-	void PointerLockPlugin::UnsubscribeFromRawInputData() {
+	void HelgobossPointerLockPlugin::UnsubscribeFromRawInputData() {
 		if (!SubscribedToRawInputData()) {
 			return;
 		}
@@ -185,15 +185,15 @@ namespace helgoboss_pointer_lock {
 		raw_input_data_proc_id_.reset();
 	}
 
-	bool PointerLockPlugin::SubscribedToRawInputData() {
+	bool HelgobossPointerLockPlugin::SubscribedToRawInputData() {
 		return raw_input_data_proc_id_.has_value();
 	}
 
-	PointerLockSessionStreamHandler::PointerLockSessionStreamHandler(flutter::PluginRegistrarWindows* registrar) {
+	HelgobossPointerLockSessionStreamHandler::HelgobossPointerLockSessionStreamHandler(flutter::PluginRegistrarWindows* registrar) {
 		registrar_ = registrar;
 	}
 
-	std::unique_ptr<flutter::StreamHandlerError<flutter::EncodableValue>> PointerLockSessionStreamHandler::OnListenInternal(
+	std::unique_ptr<flutter::StreamHandlerError<flutter::EncodableValue>> HelgobossPointerLockSessionStreamHandler::OnListenInternal(
 		const flutter::EncodableValue* arguments,
 		std::unique_ptr<flutter::EventSink<flutter::EncodableValue>>&& events
 	) {
@@ -204,11 +204,11 @@ namespace helgoboss_pointer_lock {
 				unlockOnPointerUp = value;
 			}
 		}
-		session_ = std::make_unique<PointerLockSession>(registrar_, std::move(events), unlockOnPointerUp);
+		session_ = std::make_unique<HelgobossPointerLockSession>(registrar_, std::move(events), unlockOnPointerUp);
 		return nullptr;
 	}
 
-	std::unique_ptr<flutter::StreamHandlerError<flutter::EncodableValue>> PointerLockSessionStreamHandler::OnCancelInternal(const flutter::EncodableValue* arguments) {
+	std::unique_ptr<flutter::StreamHandlerError<flutter::EncodableValue>> HelgobossPointerLockSessionStreamHandler::OnCancelInternal(const flutter::EncodableValue* arguments) {
 		// This clears the session object, causing its destrutor to run, which in turn releases the capture.
 		session_.reset();
 		return nullptr;
@@ -224,7 +224,7 @@ namespace helgoboss_pointer_lock {
 		}
 	}
 
-	PointerLockSession::PointerLockSession(
+	HelgobossPointerLockSession::HelgobossPointerLockSession(
 		flutter::PluginRegistrarWindows* registrar,
 		std::unique_ptr<flutter::EventSink<flutter::EncodableValue>> sink,
 		bool unlockOnPointerUp
@@ -322,7 +322,7 @@ namespace helgoboss_pointer_lock {
 		));
 	}
 
-	PointerLockSession::~PointerLockSession() {
+	HelgobossPointerLockSession::~HelgobossPointerLockSession() {
 		registrar_->UnregisterTopLevelWindowProcDelegate(proc_id_);
 		ReleaseCapture();
 	}

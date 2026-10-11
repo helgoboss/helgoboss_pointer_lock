@@ -6,7 +6,7 @@
 // https://github.com/flutter/flutter/issues/88724 for current limitations
 // in the unit-testable API.
 
-FlMethodResponse* pointer_position_on_screen(const PointerLockPlugin* plugin);
-FlMethodResponse* last_pointer_delta(const PointerLockPlugin* plugin);
-FlMethodResponse* set_pointer_visible(PointerLockPlugin* plugin, bool visible);
-FlMethodResponse* set_helgoboss_pointer_locked(PointerLockPlugin* plugin, bool locked);
+FlMethodResponse* pointer_position_on_screen(const HelgobossPointerLockPlugin* plugin);
+FlMethodResponse* last_pointer_delta(const HelgobossPointerLockPlugin* plugin);
+FlMethodResponse* set_pointer_visible(HelgobossPointerLockPlugin* plugin, bool visible);
+FlMethodResponse* set_helgoboss_pointer_locked(HelgobossPointerLockPlugin* plugin, bool locked);

@@ -39,13 +39,13 @@ flutter:
   plugin:
     platforms:
       macos:
-        pluginClass: PointerLockPlugin
+        pluginClass: HelgobossPointerLockPlugin
       windows:
-        pluginClass: PointerLockPluginCApi
+        pluginClass: HelgobossPointerLockPluginCApi
       linux:
-        pluginClass: PointerLockPlugin
+        pluginClass: HelgobossPointerLockPlugin
       web:
-        pluginClass: PointerLockWeb
+        pluginClass: HelgobossPointerLockWeb
         fileName: src/helgoboss_pointer_lock_web.dart
 
   # To add assets to your plugin package, add an assets section, like this:

@@ -9,17 +9,17 @@
 
 namespace helgoboss_pointer_lock {
 
-class PointerLockPlugin : public flutter::Plugin {
+class HelgobossPointerLockPlugin : public flutter::Plugin {
  public:
   static void RegisterWithRegistrar(flutter::PluginRegistrarWindows *registrar);
 
-  PointerLockPlugin(flutter::PluginRegistrarWindows* registrar);
+  HelgobossPointerLockPlugin(flutter::PluginRegistrarWindows* registrar);
 
-  virtual ~PointerLockPlugin();
+  virtual ~HelgobossPointerLockPlugin();
 
   // Disallow copy and assign.
-  PointerLockPlugin(const PointerLockPlugin&) = delete;
-  PointerLockPlugin& operator=(const PointerLockPlugin&) = delete;
+  HelgobossPointerLockPlugin(const HelgobossPointerLockPlugin&) = delete;
+  HelgobossPointerLockPlugin& operator=(const HelgobossPointerLockPlugin&) = delete;
 
   // Called when a method is called on this plugin's channel from Dart.
   void HandleMethodCall(
@@ -45,10 +45,10 @@ class PointerLockPlugin : public flutter::Plugin {
    bool SubscribedToRawInputData();
 };
 
-struct PointerLockSession {
+struct HelgobossPointerLockSession {
 public:
-  PointerLockSession(flutter::PluginRegistrarWindows* registrar, std::unique_ptr<flutter::EventSink<flutter::EncodableValue>> sink, bool unlockOnPointerUp);
-  ~PointerLockSession();
+  HelgobossPointerLockSession(flutter::PluginRegistrarWindows* registrar, std::unique_ptr<flutter::EventSink<flutter::EncodableValue>> sink, bool unlockOnPointerUp);
+  ~HelgobossPointerLockSession();
 private:
   flutter::PluginRegistrarWindows* registrar_;
 
@@ -64,9 +64,9 @@ private:
   int proc_id_;
 };
 
-class PointerLockSessionStreamHandler : public flutter::StreamHandler<flutter::EncodableValue> {
+class HelgobossPointerLockSessionStreamHandler : public flutter::StreamHandler<flutter::EncodableValue> {
 public:
-  PointerLockSessionStreamHandler(flutter::PluginRegistrarWindows* registrar);
+  HelgobossPointerLockSessionStreamHandler(flutter::PluginRegistrarWindows* registrar);
 
 protected:
   // Called when a pointer lock session is requested.
@@ -79,7 +79,7 @@ private:
   flutter::PluginRegistrarWindows* registrar_;
   
   // Empty in the beginning. Set as long as a pointer lock session is active.
-  std::unique_ptr<PointerLockSession> session_;
+  std::unique_ptr<HelgobossPointerLockSession> session_;
 };
 
 }  // namespace helgoboss_pointer_lock

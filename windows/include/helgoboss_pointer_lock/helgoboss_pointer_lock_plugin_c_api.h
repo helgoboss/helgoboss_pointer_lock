@@ -13,7 +13,7 @@
 extern "C" {
 #endif
 
-FLUTTER_PLUGIN_EXPORT void PointerLockPluginCApiRegisterWithRegistrar(
+FLUTTER_PLUGIN_EXPORT void HelgobossPointerLockPluginCApiRegisterWithRegistrar(
     FlutterDesktopPluginRegistrarRef registrar);
 
 #if defined(__cplusplus)

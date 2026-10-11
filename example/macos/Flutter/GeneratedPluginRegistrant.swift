@@ -8,5 +8,5 @@ import Foundation
 import helgoboss_pointer_lock
 
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
-  PointerLockPlugin.register(with: registry.registrar(forPlugin: "PointerLockPlugin"))
+  HelgobossPointerLockPlugin.register(with: registry.registrar(forPlugin: "HelgobossPointerLockPlugin"))
 }
