@@ -11,7 +11,7 @@ import 'package:helgoboss_pointer_lock/src/helgoboss_pointer_lock_channel.dart';
 // }
 
 void main() {
-  final PointerLockPlatform initialPlatform = PointerLockPlatform.instance;
+  final HelgobossPointerLockPlatform initialPlatform = HelgobossPointerLockPlatform.instance;
 
   test('$ChannelPointerLock is the default instance', () {
     expect(initialPlatform, isInstanceOf<ChannelPointerLock>());
