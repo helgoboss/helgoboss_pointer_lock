@@ -1,11 +1,10 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:helgoboss_pointer_lock/src/helgoboss_pointer_lock_channel.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  ChannelPointerLock platform = ChannelPointerLock();
+  // ChannelPointerLock platform = ChannelPointerLock();
   const MethodChannel channel = MethodChannel('helgoboss_pointer_lock');
 
   setUp(() {
