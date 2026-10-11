@@ -19,6 +19,7 @@ class DragExample extends StatefulWidget {
 class _DragExampleState extends State<DragExample> {
   bool _dragging = false;
   Offset _lastPointerDelta = Offset.zero;
+  Offset _firstPointerDelta = Offset.zero;
   Offset _accumulation = Offset.zero;
 
   @override
@@ -39,6 +40,7 @@ class _DragExampleState extends State<DragExample> {
             ),
           ),
         true => InfoPanel(
+            firstPointerDelta: _firstPointerDelta,
             lastPointerDelta: _lastPointerDelta,
             accumulation: _accumulation,
           ),
@@ -48,6 +50,9 @@ class _DragExampleState extends State<DragExample> {
 
   void _setDragging(bool value) {
     setState(() {
+      _firstPointerDelta = Offset.zero;
+      _lastPointerDelta = Offset.zero;
+      _accumulation = Offset.zero;
       _dragging = value;
     });
   }
@@ -57,6 +62,9 @@ class _DragExampleState extends State<DragExample> {
       return;
     }
     setState(() {
+      if (_firstPointerDelta == Offset.zero) {
+        _firstPointerDelta = delta;
+      }
       _lastPointerDelta = delta;
       _accumulation += delta;
     });

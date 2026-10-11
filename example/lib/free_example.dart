@@ -20,6 +20,7 @@ class FreeExample extends StatefulWidget {
 
 class _FreeExampleState extends State<FreeExample> {
   StreamSubscription<PointerLockMoveEvent>? _subscription;
+  Offset _firstPointerDelta = Offset.zero;
   Offset _lastPointerDelta = Offset.zero;
   Offset _accumulation = Offset.zero;
 
@@ -57,6 +58,7 @@ class _FreeExampleState extends State<FreeExample> {
                 child: Focus(
                   autofocus: true,
                   child: InfoPanel(
+                    firstPointerDelta: _firstPointerDelta,
                     lastPointerDelta: _lastPointerDelta,
                     accumulation: _accumulation,
                     additionalText:
@@ -102,6 +104,9 @@ class _FreeExampleState extends State<FreeExample> {
 
   void _setSubscription(StreamSubscription<PointerLockMoveEvent>? value) {
     setState(() {
+      _firstPointerDelta = Offset.zero;
+      _lastPointerDelta = Offset.zero;
+      _accumulation = Offset.zero;
       _subscription = value;
     });
   }
@@ -111,6 +116,9 @@ class _FreeExampleState extends State<FreeExample> {
       return;
     }
     setState(() {
+      if (_firstPointerDelta == Offset.zero) {
+        _firstPointerDelta = delta;
+      }
       _lastPointerDelta = delta;
       _accumulation += delta;
     });
