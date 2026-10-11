@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
-import 'pointer_lock.dart';
+import 'helgoboss_pointer_lock.dart';
 
 /// A widget that locks the pointer when you press a mouse button and unlocks it as soon as you release it.
 ///

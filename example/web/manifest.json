@@ -1,6 +1,6 @@
 {
-    "name": "pointer_lock_example",
-    "short_name": "pointer_lock_example",
+    "name": "helgoboss_pointer_lock_example",
+    "short_name": "helgoboss_pointer_lock_example",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

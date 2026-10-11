@@ -1,4 +1,4 @@
-#include "include/pointer_lock/pointer_lock_plugin.h"
+#include "include/helgoboss_pointer_lock/helgoboss_pointer_lock_plugin.h"
 
 #include <flutter_linux/flutter_linux.h>
 #include <gtk/gtk.h>
@@ -6,10 +6,10 @@
 
 #include <cstring>
 
-#include "pointer_lock_plugin_private.h"
+#include "helgoboss_pointer_lock_plugin_private.h"
 
 #define POINTER_LOCK_PLUGIN(obj) \
-  (G_TYPE_CHECK_INSTANCE_CAST((obj), pointer_lock_plugin_get_type(), \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), helgoboss_pointer_lock_plugin_get_type(), \
                               PointerLockPlugin))
 
 struct _PointerLockPlugin
@@ -80,10 +80,10 @@ GdkPoint get_pointer_position_on_screen(GdkDisplay* gdk_display)
 
 // End reusable functions
 
-G_DEFINE_TYPE(PointerLockPlugin, pointer_lock_plugin, g_object_get_type())
+G_DEFINE_TYPE(PointerLockPlugin, helgoboss_pointer_lock_plugin, g_object_get_type())
 
 // Called when a method call is received from Flutter.
-static void pointer_lock_plugin_handle_method_call(
+static void helgoboss_pointer_lock_plugin_handle_method_call(
     PointerLockPlugin* self, FlMethodCall* method_call)
 {
     g_autoptr(FlMethodResponse) response = nullptr;
@@ -93,7 +93,7 @@ static void pointer_lock_plugin_handle_method_call(
     if (strcmp(method, "flutterRestart") == 0)
     {
         set_pointer_visible(self, true);
-        set_pointer_locked(self, false);
+        set_helgoboss_pointer_locked(self, false);
         response = success_response();
     }
     else if (strcmp(method, "hidePointer") == 0)
@@ -106,11 +106,11 @@ static void pointer_lock_plugin_handle_method_call(
     }
     else if (strcmp(method, "lockPointer") == 0)
     {
-        response = set_pointer_locked(self, true);
+        response = set_helgoboss_pointer_locked(self, true);
     }
     else if (strcmp(method, "unlockPointer") == 0)
     {
-        response = set_pointer_locked(self, false);
+        response = set_helgoboss_pointer_locked(self, false);
     }
     else if (strcmp(method, "lastPointerDelta") == 0)
     {
@@ -181,7 +181,7 @@ FlMethodResponse* set_pointer_visible(PointerLockPlugin* plugin, bool visible)
     return success_response();
 }
 
-FlMethodResponse* set_pointer_locked(PointerLockPlugin* plugin, bool locked)
+FlMethodResponse* set_helgoboss_pointer_locked(PointerLockPlugin* plugin, bool locked)
 {
     GdkWindow* gdk_window = get_gdk_window(plugin->registrar);
     if (!gdk_window)
@@ -227,17 +227,17 @@ FlMethodResponse* set_pointer_locked(PointerLockPlugin* plugin, bool locked)
     return success_response();
 }
 
-static void pointer_lock_plugin_dispose(GObject* object)
+static void helgoboss_pointer_lock_plugin_dispose(GObject* object)
 {
-    G_OBJECT_CLASS(pointer_lock_plugin_parent_class)->dispose(object);
+    G_OBJECT_CLASS(helgoboss_pointer_lock_plugin_parent_class)->dispose(object);
 }
 
-static void pointer_lock_plugin_class_init(PointerLockPluginClass* klass)
+static void helgoboss_pointer_lock_plugin_class_init(PointerLockPluginClass* klass)
 {
-    G_OBJECT_CLASS(klass)->dispose = pointer_lock_plugin_dispose;
+    G_OBJECT_CLASS(klass)->dispose = helgoboss_pointer_lock_plugin_dispose;
 }
 
-static void pointer_lock_plugin_init(PointerLockPlugin* self)
+static void helgoboss_pointer_lock_plugin_init(PointerLockPlugin* self)
 {
     self->cursor_visible = true;
     self->initial_pointer_pos.x = 0;
@@ -248,14 +248,14 @@ static void method_call_cb(FlMethodChannel* channel, FlMethodCall* method_call,
                            gpointer user_data)
 {
     PointerLockPlugin* plugin = POINTER_LOCK_PLUGIN(user_data);
-    pointer_lock_plugin_handle_method_call(plugin, method_call);
+    helgoboss_pointer_lock_plugin_handle_method_call(plugin, method_call);
 }
 
-void pointer_lock_plugin_register_with_registrar(FlPluginRegistrar* registrar)
+void helgoboss_pointer_lock_plugin_register_with_registrar(FlPluginRegistrar* registrar)
 {
     // Initialize plugin
     PointerLockPlugin* plugin = POINTER_LOCK_PLUGIN(
-        g_object_new(pointer_lock_plugin_get_type(), nullptr));
+        g_object_new(helgoboss_pointer_lock_plugin_get_type(), nullptr));
     plugin->registrar = FL_PLUGIN_REGISTRAR(g_object_ref(registrar));
     // Set up channels
     FlBinaryMessenger* messenger = fl_plugin_registrar_get_messenger(registrar);
@@ -263,7 +263,7 @@ void pointer_lock_plugin_register_with_registrar(FlPluginRegistrar* registrar)
     // Set up method channel
     g_autoptr(FlMethodChannel) method_channel =
         fl_method_channel_new(messenger,
-                              "pointer_lock",
+                              "helgoboss_pointer_lock",
                               FL_METHOD_CODEC(codec));
     fl_method_channel_set_method_call_handler(method_channel, method_call_cb,
                                               g_object_ref(plugin),

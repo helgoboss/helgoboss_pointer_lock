@@ -7,7 +7,7 @@
 
 #include <memory>
 
-namespace pointer_lock {
+namespace helgoboss_pointer_lock {
 
 class PointerLockPlugin : public flutter::Plugin {
  public:
@@ -82,6 +82,6 @@ private:
   std::unique_ptr<PointerLockSession> session_;
 };
 
-}  // namespace pointer_lock
+}  // namespace helgoboss_pointer_lock
 
 #endif  // FLUTTER_PLUGIN_POINTER_LOCK_PLUGIN_H_

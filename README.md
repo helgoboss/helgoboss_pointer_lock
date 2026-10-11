@@ -1,4 +1,4 @@
-# pointer_lock
+# helgoboss_pointer_lock
 
 A Flutter plug-in that makes it possible to lock the mouse pointer to its current position
 and receive movement deltas while the pointer is locked.
@@ -13,9 +13,9 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  pointer_lock:
+  helgoboss_pointer_lock:
     git:
-      url: https://github.com/helgoboss/pointer_lock.git
+      url: https://github.com/helgoboss/helgoboss_pointer_lock.git
       ref: main
 ```
 

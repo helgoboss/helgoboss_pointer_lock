@@ -5,7 +5,7 @@
 import FlutterMacOS
 import Foundation
 
-import pointer_lock
+import helgoboss_pointer_lock
 
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
   PointerLockPlugin.register(with: registry.registrar(forPlugin: "PointerLockPlugin"))

@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:pointer_lock/pointer_lock.dart';
-import 'package:pointer_lock_example/free_example.dart';
-import 'package:pointer_lock_example/drag_example.dart';
-import 'package:pointer_lock_example/mouse_info.dart';
+import 'package:helgoboss_pointer_lock/helgoboss_pointer_lock.dart';
+import 'package:helgoboss_pointer_lock_example/free_example.dart';
+import 'package:helgoboss_pointer_lock_example/drag_example.dart';
+import 'package:helgoboss_pointer_lock_example/mouse_info.dart';
 
 void main() async {
   // This initializes binary messengers etc. Important to execute before doing method channel things.

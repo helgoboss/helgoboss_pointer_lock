@@ -10,7 +10,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 
-import 'package:pointer_lock/pointer_lock.dart';
+import 'package:helgoboss_pointer_lock/helgoboss_pointer_lock.dart';
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();

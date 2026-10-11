@@ -1,3 +1,3 @@
-# pointer_lock_example
+# helgoboss_pointer_lock_example
 
-Demonstrates how to use the pointer_lock plugin.
+Demonstrates how to use the helgoboss_pointer_lock plugin.

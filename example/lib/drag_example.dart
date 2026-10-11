@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pointer_lock/pointer_lock.dart';
-import 'package:pointer_lock_example/info_panel.dart';
+import 'package:helgoboss_pointer_lock/helgoboss_pointer_lock.dart';
+import 'package:helgoboss_pointer_lock_example/info_panel.dart';
 
 class DragExample extends StatefulWidget {
   final PointerLockCursor cursor;

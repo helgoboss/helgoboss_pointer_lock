@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
 
-import 'pointer_lock_platform_interface.dart';
+import 'helgoboss_pointer_lock_platform_interface.dart';
 
 /// The entry point for everything related to pointer locking
 const pointerLock = PointerLock();

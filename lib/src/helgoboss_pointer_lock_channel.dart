@@ -3,18 +3,18 @@ import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'pointer_lock.dart';
-import 'pointer_lock_platform_interface.dart';
+import 'helgoboss_pointer_lock.dart';
+import 'helgoboss_pointer_lock_platform_interface.dart';
 
 /// An implementation of [PointerLockPlatform] that uses channels.
 class ChannelPointerLock extends PointerLockPlatform {
   /// The method channel used to interact with the native platform.
   @visibleForTesting
-  final methodChannel = const MethodChannel('pointer_lock');
+  final methodChannel = const MethodChannel('helgoboss_pointer_lock');
 
   /// The event channel used to interact with the native platform.
   @visibleForTesting
-  final sessionEventChannel = const EventChannel('pointer_lock_session');
+  final sessionEventChannel = const EventChannel('helgoboss_pointer_lock_session');
 
   var _initialized = false;
 

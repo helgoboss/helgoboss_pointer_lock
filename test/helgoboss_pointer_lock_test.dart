@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:pointer_lock/pointer_lock.dart';
-import 'package:pointer_lock/src/pointer_lock_platform_interface.dart';
-import 'package:pointer_lock/src/pointer_lock_channel.dart';
+import 'package:helgoboss_pointer_lock/helgoboss_pointer_lock.dart';
+import 'package:helgoboss_pointer_lock/src/helgoboss_pointer_lock_platform_interface.dart';
+import 'package:helgoboss_pointer_lock/src/helgoboss_pointer_lock_channel.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 // class MockPointerLockPlatform

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:pointer_lock/pointer_lock.dart';
+import 'package:helgoboss_pointer_lock/helgoboss_pointer_lock.dart';
 
 class MouseInfo extends StatefulWidget {
   const MouseInfo({super.key});

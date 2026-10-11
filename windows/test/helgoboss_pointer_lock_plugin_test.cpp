@@ -8,9 +8,9 @@
 #include <string>
 #include <variant>
 
-#include "pointer_lock_plugin.h"
+#include "helgoboss_pointer_lock_plugin.h"
 
-namespace pointer_lock {
+namespace helgoboss_pointer_lock {
 namespace test {
 
 namespace {
@@ -40,4 +40,4 @@ TEST(PointerLockPlugin, GetPlatformVersion) {
 }
 
 }  // namespace test
-}  // namespace pointer_lock
+}  // namespace helgoboss_pointer_lock

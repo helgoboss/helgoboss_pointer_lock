@@ -3,8 +3,8 @@ import 'dart:ui';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:web/web.dart' as web;
 
-import '../../src/pointer_lock.dart';
-import '../../src/pointer_lock_platform_interface.dart';
+import '../../src/helgoboss_pointer_lock.dart';
+import '../../src/helgoboss_pointer_lock_platform_interface.dart';
 
 class _GlobalPointerHandlers {
   final StreamController<web.PointerEvent> _pointerMoveController =

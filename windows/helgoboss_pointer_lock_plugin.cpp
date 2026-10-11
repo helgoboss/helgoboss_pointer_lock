@@ -1,4 +1,4 @@
-#include "pointer_lock_plugin.h"
+#include "helgoboss_pointer_lock_plugin.h"
 
 // This must be included before many other Windows headers.
 #include <windows.h>
@@ -16,7 +16,7 @@
 #include <hidusage.h>
 #include <windowsx.h>
 
-namespace pointer_lock {
+namespace helgoboss_pointer_lock {
 
 
 	int print_log(const char* format, ...)
@@ -35,12 +35,12 @@ namespace pointer_lock {
 		flutter::PluginRegistrarWindows* registrar) {
 		auto method_channel = std::make_unique<flutter::MethodChannel<flutter::EncodableValue>>(
 			registrar->messenger(),
-			"pointer_lock",
+			"helgoboss_pointer_lock",
 			&flutter::StandardMethodCodec::GetInstance()
 		);
 		auto event_channel = std::make_unique<flutter::EventChannel<flutter::EncodableValue>>(
 			registrar->messenger(),
-			"pointer_lock_session",
+			"helgoboss_pointer_lock_session",
 			&flutter::StandardMethodCodec::GetInstance()
 		);
 
@@ -327,4 +327,4 @@ namespace pointer_lock {
 		ReleaseCapture();
 	}
 
-}  // namespace pointer_lock
+}  // namespace helgoboss_pointer_lock

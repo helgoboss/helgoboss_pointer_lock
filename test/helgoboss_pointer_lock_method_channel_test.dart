@@ -1,12 +1,12 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:pointer_lock/src/pointer_lock_channel.dart';
+import 'package:helgoboss_pointer_lock/src/helgoboss_pointer_lock_channel.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   ChannelPointerLock platform = ChannelPointerLock();
-  const MethodChannel channel = MethodChannel('pointer_lock');
+  const MethodChannel channel = MethodChannel('helgoboss_pointer_lock');
 
   setUp(() {
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger.setMockMethodCallHandler(

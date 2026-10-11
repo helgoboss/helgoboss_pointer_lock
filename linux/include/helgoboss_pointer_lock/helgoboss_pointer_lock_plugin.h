@@ -16,9 +16,9 @@ typedef struct {
   GObjectClass parent_class;
 } PointerLockPluginClass;
 
-FLUTTER_PLUGIN_EXPORT GType pointer_lock_plugin_get_type();
+FLUTTER_PLUGIN_EXPORT GType helgoboss_pointer_lock_plugin_get_type();
 
-FLUTTER_PLUGIN_EXPORT void pointer_lock_plugin_register_with_registrar(
+FLUTTER_PLUGIN_EXPORT void helgoboss_pointer_lock_plugin_register_with_registrar(
     FlPluginRegistrar* registrar);
 
 G_END_DECLS

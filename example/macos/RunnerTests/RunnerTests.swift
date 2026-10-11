@@ -2,7 +2,7 @@ import FlutterMacOS
 import Cocoa
 import XCTest
 
-@testable import pointer_lock
+@testable import helgoboss_pointer_lock
 
 // This demonstrates a simple unit test of the Swift portion of this plugin's implementation.
 //

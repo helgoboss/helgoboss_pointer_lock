@@ -2,8 +2,8 @@
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
-#include "include/pointer_lock/pointer_lock_plugin.h"
-#include "pointer_lock_plugin_private.h"
+#include "include/helgoboss_pointer_lock/helgoboss_pointer_lock_plugin.h"
+#include "helgoboss_pointer_lock_plugin_private.h"
 
 // This demonstrates a simple unit test of the C portion of this plugin's
 // implementation.
@@ -13,7 +13,7 @@
 // built for x64 debug, run:
 // $ build/linux/x64/debug/plugins/my_plugin/my_plugin_test
 
-namespace pointer_lock {
+namespace helgoboss_pointer_lock {
 namespace test {
 
 //TEST(PointerLockPlugin, GetPlatformVersion) {
@@ -28,4 +28,4 @@ namespace test {
 //}
 
 }  // namespace test
-}  // namespace pointer_lock
+}  // namespace helgoboss_pointer_lock

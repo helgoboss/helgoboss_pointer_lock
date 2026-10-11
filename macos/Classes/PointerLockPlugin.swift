@@ -4,11 +4,11 @@ import FlutterMacOS
 public class PointerLockPlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
     // Method channel
-    let channel = FlutterMethodChannel(name: "pointer_lock", binaryMessenger: registrar.messenger)
+    let channel = FlutterMethodChannel(name: "helgoboss_pointer_lock", binaryMessenger: registrar.messenger)
     let instance = PointerLockPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
     // Event channel
-    let eventChannel = FlutterEventChannel(name: "pointer_lock_session", binaryMessenger: registrar.messenger)
+    let eventChannel = FlutterEventChannel(name: "helgoboss_pointer_lock_session", binaryMessenger: registrar.messenger)
     eventChannel.setStreamHandler(PointerLockSessionStreamHandler())
   }
   
