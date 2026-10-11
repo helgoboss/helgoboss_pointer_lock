@@ -10,15 +10,20 @@ import XCTest
 
 class RunnerTests: XCTestCase {
 
-  func testGetPlatformVersion() {
+  func testPointerPositionOnScreen() {
     let plugin = PointerLockPlugin()
 
-    let call = FlutterMethodCall(methodName: "getPlatformVersion", arguments: [])
+    let call = FlutterMethodCall(methodName: "pointerPositionOnScreen", arguments: nil)
 
     let resultExpectation = expectation(description: "result block must be called.")
     plugin.handle(call) { result in
-      XCTAssertEqual(result as! String,
-                     "macOS " + ProcessInfo.processInfo.operatingSystemVersionString)
+      guard let coordinates = result as? [Double] else {
+        XCTFail("Expected screen coordinates")
+        resultExpectation.fulfill()
+        return
+      }
+      XCTAssertEqual(coordinates.count, 2)
+      XCTAssertTrue(coordinates.allSatisfy { $0.isFinite })
       resultExpectation.fulfill()
     }
     waitForExpectations(timeout: 1)
