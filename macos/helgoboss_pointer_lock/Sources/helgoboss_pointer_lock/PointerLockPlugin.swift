@@ -60,8 +60,10 @@ class PointerLockSessionStreamHandler: NSObject, FlutterStreamHandler {
         events(FlutterEndOfEventStream)
         return event
       }
-      let (x, y) = CGGetLastMouseDelta()
-      let list: [Double] = [Double(x), Double(y)];
+      // We used CGGetLastMouseDelta before that, but it gave us extremely
+      // high deltas when starting drag after focusing another window first.
+      // Plus, it's unnecessary, since the event already contains a delta.
+      let list: [Double] = [Double(event.deltaX), Double(event.deltaY)];
       list.withUnsafeBufferPointer { buffer in
         let data = Data(buffer: buffer)
         events(FlutterStandardTypedData(float64: data))
