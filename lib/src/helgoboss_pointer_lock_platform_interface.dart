@@ -5,23 +5,23 @@ import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 import 'helgoboss_pointer_lock.dart';
 import 'helgoboss_pointer_lock_channel.dart';
 
-abstract class PointerLockPlatform extends PlatformInterface {
-  /// Constructs a PointerLockPlatform.
-  PointerLockPlatform() : super(token: _token);
+abstract class HelgobossPointerLockPlatform extends PlatformInterface {
+  /// Constructs a HelgobossPointerLockPlatform.
+  HelgobossPointerLockPlatform() : super(token: _token);
 
   static final Object _token = Object();
 
-  static PointerLockPlatform _instance = ChannelPointerLock();
+  static HelgobossPointerLockPlatform _instance = ChannelPointerLock();
 
-  /// The default instance of [PointerLockPlatform] to use.
+  /// The default instance of [HelgobossPointerLockPlatform] to use.
   ///
   /// Defaults to [ChannelPointerLock].
-  static PointerLockPlatform get instance => _instance;
+  static HelgobossPointerLockPlatform get instance => _instance;
 
   /// Platform-specific implementations should set this with their own
-  /// platform-specific class that extends [PointerLockPlatform] when
+  /// platform-specific class that extends [HelgobossPointerLockPlatform] when
   /// they register themselves.
-  static set instance(PointerLockPlatform instance) {
+  static set instance(HelgobossPointerLockPlatform instance) {
     PlatformInterface.verifyToken(instance, _token);
     _instance = instance;
   }

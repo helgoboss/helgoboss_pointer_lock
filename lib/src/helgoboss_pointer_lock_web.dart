@@ -45,11 +45,11 @@ class _GlobalPointerHandlers {
   }
 }
 
-/// A web implementation of the PointerLockPlatform of the PointerLock plugin.
-class PointerLockWeb extends PointerLockPlatform {
-  /// Registers this class as the default instance of [PointerLockPlatform].
+/// A web implementation of the HelgobossPointerLockPlatform of the PointerLock plugin.
+class HelgobossPointerLockWeb extends HelgobossPointerLockPlatform {
+  /// Registers this class as the default instance of [HelgobossPointerLockPlatform].
   static void registerWith(Registrar registrar) {
-    PointerLockPlatform.instance = PointerLockWeb();
+    HelgobossPointerLockPlatform.instance = HelgobossPointerLockWeb();
   }
 
   bool _isInitialized = false;
@@ -70,7 +70,7 @@ class PointerLockWeb extends PointerLockPlatform {
   }) {
     if (!_isInitialized) {
       throw Exception(
-          'PointerLockWeb: Not initialized. pointerLock.ensureInitialized()'
+          'HelgobossPointerLockWeb: Not initialized. pointerLock.ensureInitialized()'
           ' must be called in your main function before runApp().');
     }
 

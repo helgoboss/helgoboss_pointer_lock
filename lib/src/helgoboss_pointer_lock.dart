@@ -24,7 +24,7 @@ class PointerLock {
   /// runApp(const MyApp());
   /// ```
   Future<void> ensureInitialized() {
-    return PointerLockPlatform.instance.ensureInitialized();
+    return HelgobossPointerLockPlatform.instance.ensureInitialized();
   }
 
   /// Returns whether pointer up or down events are reliably emitted while the pointer is locked, given the current
@@ -55,7 +55,7 @@ class PointerLock {
     PointerLockCursor cursor = PointerLockCursor.hidden,
     bool unlockOnPointerUp = false,
   }) {
-    return PointerLockPlatform.instance.createSession(
+    return HelgobossPointerLockPlatform.instance.createSession(
       windowsMode: windowsMode,
       cursor: cursor,
       unlockOnPointerUp: unlockOnPointerUp,
@@ -77,7 +77,7 @@ class PointerLock {
   /// - On Linux: `gdk_window_set_cursor`
   /// - On Web: No effect (pointer is always hidden during pointer lock)
   Future<void> hidePointer() {
-    return PointerLockPlatform.instance.hidePointer();
+    return HelgobossPointerLockPlatform.instance.hidePointer();
   }
 
   /// Shows the mouse pointer.
@@ -90,12 +90,12 @@ class PointerLock {
   /// - On Linux: `gdk_window_set_cursor`
   /// - On Web: No effect (pointer is always hidden during pointer lock)
   Future<void> showPointer() {
-    return PointerLockPlatform.instance.showPointer();
+    return HelgobossPointerLockPlatform.instance.showPointer();
   }
 
   /// A utility function that returns the position of the pointer in screen coordinates.
   Future<Offset> pointerPositionOnScreen() {
-    return PointerLockPlatform.instance.pointerPositionOnScreen();
+    return HelgobossPointerLockPlatform.instance.pointerPositionOnScreen();
   }
 }
 

@@ -6,8 +6,8 @@ import 'package:flutter/services.dart';
 import 'helgoboss_pointer_lock.dart';
 import 'helgoboss_pointer_lock_platform_interface.dart';
 
-/// An implementation of [PointerLockPlatform] that uses channels.
-class ChannelPointerLock extends PointerLockPlatform {
+/// An implementation of [HelgobossPointerLockPlatform] that uses channels.
+class ChannelPointerLock extends HelgobossPointerLockPlatform {
   /// The method channel used to interact with the native platform.
   @visibleForTesting
   final methodChannel = const MethodChannel('helgoboss_pointer_lock');
