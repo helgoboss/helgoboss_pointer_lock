@@ -1,6 +1,6 @@
 # helgoboss_pointer_lock
 
-A Flutter plug-in that makes it possible to lock the mouse pointer to its current position
+A Flutter plugin that makes it possible to lock the mouse pointer to its current position
 and receive movement deltas while the pointer is locked.
 
 | Windows | macOS | Linux (x11) | Linux (Wayland) |        Web        |
