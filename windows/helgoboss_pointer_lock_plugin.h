@@ -1,5 +1,5 @@
-#ifndef FLUTTER_PLUGIN_POINTER_LOCK_PLUGIN_H_
-#define FLUTTER_PLUGIN_POINTER_LOCK_PLUGIN_H_
+#ifndef FLUTTER_PLUGIN_HELGOBOSS_POINTER_LOCK_PLUGIN_H_
+#define FLUTTER_PLUGIN_HELGOBOSS_POINTER_LOCK_PLUGIN_H_
 
 #include <flutter/method_channel.h>
 #include <flutter/event_channel.h>
@@ -84,4 +84,4 @@ private:
 
 }  // namespace helgoboss_pointer_lock
 
-#endif  // FLUTTER_PLUGIN_POINTER_LOCK_PLUGIN_H_
+#endif  // FLUTTER_PLUGIN_HELGOBOSS_POINTER_LOCK_PLUGIN_H_

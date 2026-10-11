@@ -8,7 +8,7 @@
 
 #include "helgoboss_pointer_lock_plugin_private.h"
 
-#define POINTER_LOCK_PLUGIN(obj) \
+#define HELGOBOSS_POINTER_LOCK_PLUGIN(obj) \
   (G_TYPE_CHECK_INSTANCE_CAST((obj), helgoboss_pointer_lock_plugin_get_type(), \
                               PointerLockPlugin))
 
@@ -247,14 +247,14 @@ static void helgoboss_pointer_lock_plugin_init(PointerLockPlugin* self)
 static void method_call_cb(FlMethodChannel* channel, FlMethodCall* method_call,
                            gpointer user_data)
 {
-    PointerLockPlugin* plugin = POINTER_LOCK_PLUGIN(user_data);
+    PointerLockPlugin* plugin = HELGOBOSS_POINTER_LOCK_PLUGIN(user_data);
     helgoboss_pointer_lock_plugin_handle_method_call(plugin, method_call);
 }
 
 void helgoboss_pointer_lock_plugin_register_with_registrar(FlPluginRegistrar* registrar)
 {
     // Initialize plugin
-    PointerLockPlugin* plugin = POINTER_LOCK_PLUGIN(
+    PointerLockPlugin* plugin = HELGOBOSS_POINTER_LOCK_PLUGIN(
         g_object_new(helgoboss_pointer_lock_plugin_get_type(), nullptr));
     plugin->registrar = FL_PLUGIN_REGISTRAR(g_object_ref(registrar));
     // Set up channels
