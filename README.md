@@ -3,6 +3,8 @@
 A Flutter plugin that makes it possible to lock the mouse pointer to its current position
 and receive movement deltas while the pointer is locked.
 
+> This package is designed for regular Flutter applications. For mouse capture in game loops, consider [flutter3d_pointer_lock](https://pub.dev/packages/flutter3d_pointer_lock), which is specifically tailored to that use case.
+
 | Windows | macOS | Linux (x11) | Linux (Wayland) |        Web        |
 |:-------:|:-----:|:-----------:|-----------------|:-----------------:|
 |   ✔️    |  ✔️   |     ✔️         | so so           | Experimental️ (*) |
