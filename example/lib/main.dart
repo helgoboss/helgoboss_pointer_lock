@@ -8,7 +8,9 @@ import 'package:helgoboss_pointer_lock_example/mouse_info.dart';
 void main() async {
   // This initializes binary messengers etc. Important to execute before doing method channel things.
   WidgetsFlutterBinding.ensureInitialized();
-  await pointerLock.ensureInitialized();
+  if (pointerLock.isSupportedPlatform()) {
+    await pointerLock.ensureInitialized();
+  }
   // _debugIncomingPointerPackets();
   runApp(const MyApp());
 }

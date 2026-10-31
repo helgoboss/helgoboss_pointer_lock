@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
+
 import 'helgoboss_pointer_lock.dart';
 
 /// A widget that locks the pointer when you press a mouse button and unlocks it as soon as you release it.
@@ -84,9 +85,11 @@ bool _acceptDefault(PointerLockDragAcceptDetails details) {
 class _PointerLockDragAreaState extends State<PointerLockDragArea> {
   _Session? _session;
 
+  bool get _useDartFallback => !pointerLock.isSupportedPlatform();
+
   @override
   void dispose() {
-    _session?.subscription.cancel();
+    _session?.subscription?.cancel();
     super.dispose();
   }
 
@@ -94,9 +97,10 @@ class _PointerLockDragAreaState extends State<PointerLockDragArea> {
   Widget build(BuildContext context) {
     return Listener(
       behavior: HitTestBehavior.translucent,
-      onPointerDown:
-          widget.onMove == null ? null : (event) => _onPointerDown(event),
+      onPointerDown: widget.onMove == null ? null : (event) => _onPointerDown(event),
+      onPointerMove: _useDartFallback ? _onPointerMove : null,
       onPointerUp: (event) => _onPointerUp(event),
+      onPointerCancel: _useDartFallback ? _onPointerCancel : null,
       child: widget.child,
     );
   }
@@ -108,12 +112,22 @@ class _PointerLockDragAreaState extends State<PointerLockDragArea> {
     if (!widget.accept(PointerLockDragAcceptDetails(trigger: downEvent))) {
       return;
     }
+
+    if (_useDartFallback) {
+      _session = _Session(
+        downEvent: downEvent,
+        unlocksAutomatically: false,
+      );
+      final details = PointerLockDragLockDetails(trigger: downEvent);
+      widget.onLock?.call(details);
+      return;
+    }
+
     // If it's known that mouse events such as pointer-up are not reliably emitted while the pointer is locked,
     // we ask the implementation to unlock the mouse pointer automatically when the pointer goes up.
     // The advantage is that the lock reliably ends. The disadvantage is that the session doesn't
     // care which pointer/button goes up. Reliability is more important though.
-    final unlockAutomatically = !pointerLock.reportsPointerUpDownEventsReliably(
-        windowsMode: widget.windowsMode);
+    final unlockAutomatically = !pointerLock.reportsPointerUpDownEventsReliably(windowsMode: widget.windowsMode);
     final deltaStream = pointerLock.createSession(
       windowsMode: widget.windowsMode,
       cursor: widget.cursor,
@@ -121,8 +135,7 @@ class _PointerLockDragAreaState extends State<PointerLockDragArea> {
     );
     final subscription = deltaStream.listen(
       (event) {
-        final details =
-            PointerLockDragMoveDetails(trigger: downEvent, move: event);
+        final details = PointerLockDragMoveDetails(trigger: downEvent, move: event);
         widget.onMove?.call(details);
       },
       // onDone will only be invoked if the stream has been created with unlockOnPointerUp
@@ -136,6 +149,25 @@ class _PointerLockDragAreaState extends State<PointerLockDragArea> {
     );
     final details = PointerLockDragLockDetails(trigger: downEvent);
     widget.onLock?.call(details);
+  }
+
+  void _onPointerMove(PointerMoveEvent event) {
+    final session = _session;
+    if (session == null || event.pointer != session.downEvent.pointer) {
+      return;
+    }
+    widget.onMove?.call(PointerLockDragMoveDetails(
+      trigger: session.downEvent,
+      move: PointerLockMoveEvent(delta: event.delta),
+    ));
+  }
+
+  void _onPointerCancel(PointerCancelEvent event) {
+    final session = _session;
+    if (session == null || event.pointer != session.downEvent.pointer) {
+      return;
+    }
+    _handleUnlock();
   }
 
   /// Unlocks the pointer if necessary.
@@ -163,7 +195,7 @@ class _PointerLockDragAreaState extends State<PointerLockDragArea> {
       // bit hacky. Hope this can be improved in the future.
       return;
     }
-    await session.subscription.cancel();
+    await session.subscription?.cancel();
     _handleUnlock();
   }
 
@@ -180,12 +212,12 @@ class _PointerLockDragAreaState extends State<PointerLockDragArea> {
 
 class _Session {
   final PointerDownEvent downEvent;
-  final StreamSubscription<PointerLockMoveEvent> subscription;
+  final StreamSubscription<PointerLockMoveEvent>? subscription;
   final bool unlocksAutomatically;
 
   _Session({
     required this.downEvent,
-    required this.subscription,
+    this.subscription,
     required this.unlocksAutomatically,
   });
 }

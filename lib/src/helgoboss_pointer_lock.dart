@@ -11,6 +11,11 @@ const pointerLock = PointerLock();
 class PointerLock {
   const PointerLock();
 
+  /// Whether native pointer locking is supported on the current platform.
+  bool isSupportedPlatform() {
+    return defaultTargetPlatform != TargetPlatform.android && defaultTargetPlatform != TargetPlatform.iOS;
+  }
+
   /// Ensures that the pointer locking system is correctly initialized.
   ///
   /// At the moment, all this method does, is to restore the original pointer after a hot Flutter restart during app
